@@ -1,0 +1,266 @@
+featureFlags:
+  flags:
+  - flag:
+      name: another flag
+      identifier: another_flag
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: env1
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+  - flag:
+      name: allowed flag
+      identifier: another_flag2
+      description: has tag2 and tag4 20:12
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      tags:
+      - tag:
+          name: tag4
+          identifier: tag4
+      - tag:
+          name: tag2
+          identifier: tag2
+      environments:
+      - identifier: env1
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+        rules:
+        - priority: 0
+          serve:
+            serveVariation: "false"
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - test
+  - flag:
+      name: colors
+      identifier: colors
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: Blue
+          offVariation: Red
+        variations:
+        - identifier: Blue
+          value: blue
+        - identifier: Yellow
+          value: yellow
+        - identifier: Red
+          value: red
+      tags:
+      - tag:
+          name: tag4
+          identifier: tag4
+      prerequisites:
+      - flagIdentifier: no_tag_flag
+        variations:
+        - "false"
+      - flagIdentifier: another_flag2
+        variations:
+        - "false"
+      - flagIdentifier: danflag2
+        variations:
+        - "false"
+      - flagIdentifier: flag_test_with_tag2
+        variations:
+        - "false"
+      environments:
+      - identifier: env1
+        default:
+          onVariation: Blue
+          offVariation: Red
+        state: "off"
+        rules:
+        - priority: 0
+          serve:
+            serveVariation: Blue
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - test
+  - flag:
+      name: dan-flag
+      identifier: danflag
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      tags:
+      - tag:
+          name: tag2
+          identifier: tag2
+      environments:
+      - identifier: env1
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "on"
+  - flag:
+      name: dan-flag2
+      identifier: danflag2
+      description: has tag 1 and tag 3
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      tags:
+      - tag:
+          name: tag3
+          identifier: tag3
+      - tag:
+          name: tag1
+          identifier: tag1
+      environments:
+      - identifier: env1
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "on"
+  - flag:
+      name: flag_test_with_tag2
+      identifier: flag_test_with_tag2
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      tags:
+      - tag:
+          name: tag2
+          identifier: tag2
+      environments:
+      - identifier: env1
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+  - flag:
+      name: flag_with_tag1
+      identifier: flag_with_tag1
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      tags:
+      - tag:
+          name: tag1
+          identifier: tag1
+      environments:
+      - identifier: env1
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "on"
+  - flag:
+      name: flag_with_tag1_tag3
+      identifier: flag_with_tag1_tag3
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      tags:
+      - tag:
+          name: tag3
+          identifier: tag3
+      - tag:
+          name: tag1
+          identifier: tag1
+      - tag:
+          name: tag2
+          identifier: tag2
+      environments:
+      - identifier: env1
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+  - flag:
+      name: no_tag_flag
+      identifier: no_tag_flag
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: env1
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+  projectIdentifier: crystaltest
+  orgIdentifier: default
